@@ -14,7 +14,13 @@ class MovieController extends Controller
      */
     public function index()
     {
-        //
+        $movies = Movie::all();
+        $response = array(
+            'status' => 'OK',
+            'message' => 'Here is a list of all the movies !',
+            'data' => $movies,
+        );
+        return response()->json($response, 200, [], JSON_NUMERIC_CHECK);
     }
 
     /**
@@ -35,7 +41,14 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $request
+        $movie = Movie::create(json_decode($request->getContent(), true));
+        $response = array(
+            'status' => 'OK',
+            'message' => 'Here is the movie you create !',
+            'data' => $movie,
+        );
+        return response()->json($response, 200, [], JSON_NUMERIC_CHECK);
     }
 
     /**

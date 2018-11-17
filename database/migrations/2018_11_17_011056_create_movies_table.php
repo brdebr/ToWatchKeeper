@@ -18,8 +18,8 @@ class CreateMoviesTable extends Migration
 
             $table->string('title', 250)->nullable(false);
             $table->date('release');
-            $table->string('duration', 20)->default('0:00:00');
-            $table->double('score', 2, 2);
+            $table->string('duration', 20)->default('00:00:00');
+            $table->decimal('score', 5, 2);
             $table->longText('synopsis');
             $table->string('infourl', 250);
             $table->timestamps();

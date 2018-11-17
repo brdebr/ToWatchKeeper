@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/movies', 'MovieController@index')->name('Movie.all');
+
+Route::post('/movie', 'MovieController@store')->name('Movie.store');
