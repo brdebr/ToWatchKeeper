@@ -14,8 +14,16 @@ class CreateMoviesTable extends Migration
     public function up()
     {
         Schema::create('movies', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
+
+            $table->string('title', 250)->nullable(false);
+            $table->date('release');
+            $table->string('duration', 20)->default('0:00:00');
+            $table->double('score', 2, 2);
+            $table->longText('synopsis');
+            $table->string('infourl', 250);
             $table->timestamps();
+
         });
     }
 
