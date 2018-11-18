@@ -17,6 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/movies', 'MovieController@index')->name('Movie.all');
+Route::get('/contents', 'ContentController@index')->name('Content.all');
 
-Route::post('/movie', 'MovieController@store')->name('Movie.store');
+Route::post('/content', 'ContentController@store')->name('Content.store');
