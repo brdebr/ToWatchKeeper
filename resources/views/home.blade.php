@@ -3,7 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        {{-- TODO: inline style --}}
+        <div class="col-md-8" style="margin-bottom: 20px">
             <div class="card">
                 <div class="card-header">Dashboard</div>
 
@@ -18,6 +19,7 @@
                 </div>
             </div>
         </div>
+        <contents-list></contents-list>
     </div>
 </div>
 @endsection
