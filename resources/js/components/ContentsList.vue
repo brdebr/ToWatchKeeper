@@ -9,7 +9,7 @@
                         </div>
 
                     <div class="card-body">
-                        <content-detail :content="contents[0]"></content-detail>
+                        <content-detail :content="placeholderItem"></content-detail>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li v-for="content in contents" :key="content.id" class="list-group-item">
@@ -41,6 +41,9 @@ export default {
   computed:{
       listSize: function () {
           return this.contents.length;
+      },
+      placeholderItem: function () {
+          return this.contents.length === 0 ? contentPlaceholder : this.contents[0];
       }
   },
   mounted() {
