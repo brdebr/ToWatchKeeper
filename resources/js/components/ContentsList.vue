@@ -1,23 +1,19 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-11">
                 <div class="card card-default">
-                    <div class="card-header">I'm a Content list !</div>
+                    <div class="card-header">
+                        <span>I'm a Content list !</span>
+                        <small class="float-right text-muted">Listing : {{ listSize }} contents </small>
+                        </div>
 
                     <div class="card-body">
                         <content-detail :content="contents[0]"></content-detail>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li v-for="content in contents" :key="content.id" class="list-group-item">
-                            <span>
-                                {{ content.title }}
-                            </span>
-                            <span class="float-right">
-                                <a href="#" class="btn-outline">
-                                    <i class="fa fa-fw fa-eye"></i>
-                                </a>
-                            </span>
+                            <content-item-list :content="content"></content-item-list>
                         </li>
                     </ul>
                 </div>
@@ -38,8 +34,14 @@ var contentPlaceholder = {
 export default {
   data: function() {
     return {
-      contents: [contentPlaceholder],
+      contents: [],
+      selected: contentPlaceholder,
     };
+  },
+  computed:{
+      listSize: function () {
+          return this.contents.length;
+      }
   },
   mounted() {
     axios
@@ -52,7 +54,7 @@ export default {
         console.log('Get contents : Failed!');
         console.log(err);
       });
-    console.log('ContentList Component mounted.');
+    console.log('Content-List Component mounted.');
   },
 };
 </script>
