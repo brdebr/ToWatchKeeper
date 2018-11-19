@@ -17,14 +17,14 @@ class MyUserSeeder extends Seeder
         User::insert(
             [
                 [
-                    'name' => 'Bryan de Olviera Brettas',
+                    'name' => 'Bryan de Oliveira Brettas',
                     'email' => 'brdebr.93@gmail.com',
                     'password' => bcrypt('asdzxc'),
                     'created_at'=> Carbon::now()->subDays(2)->subHours(3),
                     'updated_at'=> Carbon::now(),
                 ],
                 [
-                    'name' => 'Fernando Alonso de Cera',
+                    'name' => 'Fernando de Cera Alonso ',
                     'email' => 'falonso@test.com',
                     'password' => bcrypt('asdzxc'),
                     'created_at'=> Carbon::now()->subDays(1)->subHours(5),

@@ -19,7 +19,7 @@ class InitialContentsSeeder extends Seeder
                 [
                     'title' => 'Mision Imposible',
                     'release' => '10/11/12',
-                    'synopsis' => 'Al final lo consigue',
+                    'synopsis' => 'Spoiler! : Al final lo consigue',
                     'type'=> 'film',
                     'infourl' => 'http://localhost/mi',
                     'created_at'=> Carbon::now()->subDays(3)->subHours(3),
@@ -28,7 +28,7 @@ class InitialContentsSeeder extends Seeder
                 [
                     'title' => 'Mision Imposible 2',
                     'release' => '20/11/12',
-                    'synopsis' => 'Al final lo consigue',
+                    'synopsis' => 'Al final también lo consigue',
                     'type'=> 'film',
                     'infourl' => 'http://localhost/mi',
                     'created_at'=> Carbon::now()->subDays(3)->subHours(2),
@@ -59,6 +59,15 @@ class InitialContentsSeeder extends Seeder
                     'type'=> 'film',
                     'infourl' => 'http://localhost/mi',
                     'created_at'=> Carbon::now()->subDays(2)->subHours(1),
+                    'updated_at'=> Carbon::now(),
+                ],
+                [
+                    'title' => 'The last man on earth',
+                    'release' => '01/11/12',
+                    'synopsis' => 'En el primer capitulo se encuentra 2 personas',
+                    'type'=> 'serie',
+                    'infourl' => 'http://localhost/mi',
+                    'created_at'=> Carbon::now()->subDays(2)->subHours(4),
                     'updated_at'=> Carbon::now(),
                 ]
             ]

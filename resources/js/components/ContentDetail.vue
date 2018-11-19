@@ -1,21 +1,26 @@
 <template>
     <div>
-        <h4 class="card-title text-capitalize">{{ content.title }}</h4>
+        <div class="text-capitalize d-flex align-items-baseline">
+            <h5>
+                {{ content.title }}
+            </h5>
+            <div class="ml-auto">
+                Released: {{content.release}}
+            </div>
+        </div>
+
         <h6 class="card-subtitle mb-2 text-muted">
             <span>Type:
-                <span class="text-capitalize badge badge-pill badge-light">
+                <span class="text-capitalize badge badge-pill badge-primary">
                     {{content.type}}
                 </span>
             </span>
-            <span class="float-right">
-                Released: {{content.release}}
-            </span>
         </h6>
-        <dl class="row">
-            <dt class="col-sm-2">Synopsis:</dt>
-            <dd class="col-sm-10">{{content.synopsis}}</dd>
-        </dl>
-        <a :href="content.infourl" class="float-right card-link badge badge-primary">More info</a>
+        <div class="d-flex">
+            <div class="mr-3 font-weight-bold">Synopsis:</div>
+            <div class="">{{content.synopsis}}</div>
+        </div>
+        <a :href="content.infourl" class="float-right card-link badge badge-info">More info</a>
     </div>
 </template>
 
