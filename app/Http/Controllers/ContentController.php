@@ -90,13 +90,19 @@ class ContentController extends Controller
     public function destroy($id)
     {
         $content = Content::find($id);
-        $result = Content::find($id)->delete;
-        // TODO: Catch errors
-        $response = array(
-            'status' => 'OK',
-            'message' => 'Here is the content that you deleted!',
-            'data' => $content
-        );
+        $result = Content::find($id)->delete();
+        if($result){
+            $response = array(
+                'status' => 'OK',
+                'message' => 'Here is the content that you deleted!',
+                'data' => $content
+            );
+        }else{
+            $response = array(
+                'status' => 'ERROR',
+                'message' => $result,
+            );
+        }
         return response()->json($response, 200, [], JSON_NUMERIC_CHECK);
     }
 }

@@ -15,9 +15,16 @@
                         <content-detail :content="contents[selected]"></content-detail>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li v-for="(content, index) in contents" :key="content.id" class="list-group-item">
-                            <content-list-item @displayContent="selectContent" :index="index" :content="content"></content-list-item>
-                        </li>
+                        <content-list-item
+                            v-for="(content, index) in contents"
+                            :key="content.id"
+                            :index="index"
+                            :content="content"
+                            :active="selected === index"
+                            @displayContent="selectContent"
+                            @contentDestroyed="deleteContent"
+                            class="list-group-item">
+                        </content-list-item>
                     </ul>
                 </div>
             </div>
@@ -50,6 +57,9 @@ export default {
     selectContent: function(index) {
       console.log('Select content index' + index);
       this.selected = index;
+    },
+    deleteContent: function(index) {
+      this.contents.pop(index);
     },
   },
   mounted() {
