@@ -29,7 +29,7 @@
 </template>
 
 <script>
-var apiUrl = 'http://localhost:8000/api/contents/';
+let apiUrl = 'http://localhost:8000/api/contents/';
 export default {
   props: ['content', 'index', 'active'],
   methods: {

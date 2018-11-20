@@ -4,7 +4,7 @@
             <div class="col-md-11">
                 <div class="card card-default">
                     <div class="card-header d-flex align-items-baseline">
-                        <span>
+                        <span @click="toggleEditing">
                             I'm a Content list !
                         </span>
                         <small class="ml-auto text-muted">
@@ -12,7 +12,12 @@
                         </small>
                     </div>
                     <div class="card-body">
-                        <content-detail :content="contents[selected]"></content-detail>
+                        <template v-if="!editing">
+                            <content-detail :content="contents[selected]"></content-detail>
+                        </template>
+                        <template v-else>
+                            <content-edit :content="contents[selected]"></content-edit>
+                        </template>
                     </div>
                     <ul class="list-group list-group-flush">
                         <content-list-item
@@ -33,8 +38,8 @@
 </template>
 
 <script>
-var apiUrl = 'http://localhost:8000/api/contents';
-var contePlaceholder = {
+let apiUrl = 'http://localhost:8000/api/contents';
+let contePlaceholder = {
   title: 'loading ...',
   release: '##/##/####',
   synopsis: 'loading ...',
@@ -46,6 +51,7 @@ export default {
     return {
       contents: [contePlaceholder],
       selected: 0,
+      editing: false,
     };
   },
   computed: {
@@ -60,6 +66,9 @@ export default {
     },
     deleteContent: function(index) {
       this.contents.pop(index);
+    },
+    toggleEditing: function() {
+      this.editing = !this.editing;
     },
   },
   mounted() {
