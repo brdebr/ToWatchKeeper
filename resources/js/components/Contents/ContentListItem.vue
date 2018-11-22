@@ -14,7 +14,7 @@
             <span class="float-right mr-3">
                 <a href="#" class="btn-outline">
                     <!-- TODO: inline style -->
-                    <i class="fa fa-fw fa-edit" style="color:#ce6100"></i>
+                    <i @click="sendDisplayEditContent" class="fa fa-fw fa-edit" style="color:#ce6100"></i>
                 </a>
             </span>
             <span class="float-right mr-3">
@@ -34,21 +34,28 @@ export default {
   props: ['content', 'index', 'active'],
   methods: {
     sendDisplayContent: function() {
-      console.log('Event displayContent');
+      console.log('Sending Event displayContent');
       this.$emit('displayContent', this.index);
     },
     deleteContent: function() {
+      console.log('Sending Event deleteContent');
+      console.log('Content', this.content);
+
       axios
         .delete(apiUrl + this.content.id)
         .then(result => {
           console.log('Content deleted : Success!');
-          console.log(result);
+          console.log(result.data);
           this.$emit('contentDestroyed', this.index);
         })
         .catch(err => {
           console.log('Content deleted : Failed!');
           console.log(err);
         });
+    },
+    sendDisplayEditContent: function() {
+      console.log('Sending Event DisplayEditContent');
+      this.$emit('displayEditContent', this.index);
     },
   },
   mounted() {

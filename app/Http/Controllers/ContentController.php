@@ -66,9 +66,9 @@ class ContentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $contentOld = Content::find($id);
-        $result = Content::find($id)->update((json_decode($request->getContent(), true)));
-        $contentNew = Content::find($id);
+        $contentOld = (json_decode($request->getContent(), true));
+        $contentNew = Content::find($id)->update((json_decode($request->getContent(), true)));
+        // $contentNew = Content::find($id);
         // TODO: Catch errors
         $response = array(
             'status' => 'OK',

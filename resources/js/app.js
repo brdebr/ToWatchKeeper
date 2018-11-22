@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -24,6 +23,11 @@ const files = require.context('./', true, /\.vue$/i)
 files.keys().map(key => {
     return Vue.component(_.last(key.split('/')).split('.')[0], files(key))
 })
+
+import datePicker from 'vue-bootstrap-datetimepicker';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';
+Vue.use(datePicker);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

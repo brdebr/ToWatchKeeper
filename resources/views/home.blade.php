@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <contents-list></contents-list>
+        <contents-app></contents-app>
     </div>
 </div>
 @endsection
