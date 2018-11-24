@@ -7,7 +7,7 @@
                           I'm a Content DISPLAYER !
                       </span>
                       <small class="ml-auto">
-                          Record ID: #{{ listSize }}
+                          Record ID: #{{ content.id }}
                       </small>
                   </div>
                   <div class="card-body bg-light">
@@ -24,49 +24,43 @@
 </template>
 
 <script>
-import { ContentsEventsBus } from './ContentsEventsBus';
-let apiUrl = 'http://localhost:8000/api/contents';
+import { ContentsEventsBus } from "./ContentsEventsBus.js";
+
+let apiUrl = "http://localhost:8000/api/contents";
 // let content = ;
 export default {
   data: function() {
     return {
       content: {
-        title: 'loading ...',
-        release: '##/##/####',
-        synopsis: 'loading ...',
-        type: 'loading ...',
-        infourl: 'about:blank',
+        title: "loading ...",
+        release: "##/##/####",
+        synopsis: "loading ...",
+        type: "loading ...",
+        infourl: "about:blank"
       },
-      selected: 0,
-      editing: false,
+      editing: false
     };
   },
-  computed: {
-    listSize: function() {
-      return this.contents.length;
-    },
-  },
   methods: {
-    displayContent: function(index) {
-      this.selected = index;
-      this.editing = false;
+    displayContent: function(content) {
+      this.content = content;
     },
-    deleteContent: function(index) {
-      this.contents.pop(index);
-      this.selected = 0;
-      this.editing = false;
-    },
+    // deleteContent: function(index) {
+    //   this.contents.pop(index);
+    //   this.selected = 0;
+    //   this.editing = false;
+    // },
     toggleEditing: function() {
       this.editing = !this.editing;
-    },
-    displayEditContent: function(index) {
-      this.selected = index;
-      this.editing = true;
-    },
-    displayEditedContent: function(content) {
-      this.contents[this.selected] = { ...content };
-      this.editing = false;
-    },
+    }
+    // displayEditContent: function(index) {
+    //   this.selected = index;
+    //   this.editing = true;
+    // },
+    // displayEditedContent: function(content) {
+    //   this.contents[this.selected] = { ...content };
+    //   this.editing = false;
+    // },
   },
   mounted() {
     // axios
@@ -79,12 +73,12 @@ export default {
     //     console.log('Get contents : Failed!');
     //     console.log(err);
     //   });
-    console.log('Content-List Component mounted.');
+    console.log("Content-List Component mounted.");
   },
-  created(){
-    ContentsEventsBus.$on('displayContent', function(content) {
-      this.content = {...content};
-    })
+  created() {
+    ContentsEventsBus.$on("displayContent", content => {
+      this.displayContent(content);
+    });
   }
 };
 </script>

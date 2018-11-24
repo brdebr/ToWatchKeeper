@@ -29,13 +29,15 @@
 </template>
 
 <script>
+import { ContentsEventsBus } from './ContentsEventsBus.js';
+
 let apiUrl = 'http://localhost:8000/api/contents/';
 export default {
   props: ['content', 'index', 'active'],
   methods: {
     sendDisplayContent: function() {
       console.log('Sending Event displayContent');
-      this.$emit('displayContent', this.index);
+      ContentsEventsBus.$emit('displayContent', this.content);
     },
     deleteContent: function() {
       console.log('Sending Event deleteContent');
