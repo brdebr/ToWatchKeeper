@@ -6,20 +6,20 @@
             <span>
                 {{ content.title }}
             </span>
-            <span class="float-right">
+            <span @click.prevent="sendDisplayContent" class="float-right">
                 <a href="#" class="btn-outline">
-                    <i @click.prevent="sendDisplayContent" class="fa fa-fw fa-eye"></i>
+                    <i class="fa fa-fw fa-eye"></i>
                 </a>
             </span>
-            <span class="float-right mr-3">
+            <span @click="sendDisplayEditContent" class="float-right mr-3">
                 <a href="#" class="btn-outline">
                     <!-- TODO: inline style -->
-                    <i @click="sendDisplayEditContent" class="fa fa-fw fa-edit" style="color:#ce6100"></i>
+                    <i class="fa fa-fw fa-edit" style="color:#ce6100"></i>
                 </a>
             </span>
-            <span class="float-right mr-3">
+            <span @click="deleteContent" class="float-right mr-3">
                 <a href="#" class="btn-outline">
-                    <i @click="deleteContent" class="fa fa-fw fa-trash text-danger"></i>
+                    <i class="fa fa-fw fa-trash text-danger"></i>
                 </a>
             </span>
         </div>
@@ -48,7 +48,7 @@ export default {
         .then(result => {
           console.log('Content deleted : Success!');
           console.log(result.data);
-          this.$emit('contentDestroyed', this.index);
+          ContentsEventsBus.$emit('contentDestroyed', result.data.data.id);
         })
         .catch(err => {
           console.log('Content deleted : Failed!');
@@ -56,8 +56,8 @@ export default {
         });
     },
     sendDisplayEditContent: function() {
-      console.log('Sending Event DisplayEditContent');
-      this.$emit('displayEditContent', this.index);
+      console.log('Sending Event displayEditContent');
+      ContentsEventsBus.$emit('displayEditContent', this.content);
     },
   },
   mounted() {

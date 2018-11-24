@@ -24,6 +24,13 @@ class MyUserSeeder extends Seeder
                     'updated_at'=> Carbon::now(),
                 ],
                 [
+                    'name' => 'Bryan',
+                    'email' => 'brdebr93@gmail.com',
+                    'password' => bcrypt('asdzxc'),
+                    'created_at'=> Carbon::now()->subDays(2)->subHours(4),
+                    'updated_at'=> Carbon::now(),
+                ],
+                [
                     'name' => 'Fernando de Cera Alonso ',
                     'email' => 'falonso@test.com',
                     'password' => bcrypt('asdzxc'),

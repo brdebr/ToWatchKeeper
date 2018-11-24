@@ -37,6 +37,8 @@
 
 <script>
 let apiUrl = 'http://localhost:8000/api/contents/';
+import { ContentsEventsBus } from './ContentsEventsBus.js';
+
 export default {
   props: ['content'],
   data: function() {
@@ -57,7 +59,7 @@ export default {
         .patch(apiUrl + this.content.id, this.content)
         .then(result => {
           console.log('Content updated : Success!', result.data);
-          this.$emit('contentUpdated', result.data.data.new);
+          ContentsEventsBus.$emit('contentUpdated', result.data.data.new);
         })
         .catch(err => {
           console.log('Content updated : Failed!', err);

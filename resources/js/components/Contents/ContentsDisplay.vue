@@ -15,7 +15,7 @@
                           <content-detail :content="content"/>
                       </template>
                       <template v-else>
-                          <content-edit @contentUpdated="displayEditedContent" :content="content"/>
+                          <content-edit :content="content"/>
                       </template>
                   </div>
               </div>
@@ -45,39 +45,25 @@ export default {
     displayContent: function(content) {
       this.content = content;
     },
-    // deleteContent: function(index) {
-    //   this.contents.pop(index);
-    //   this.selected = 0;
-    //   this.editing = false;
-    // },
     toggleEditing: function() {
       this.editing = !this.editing;
     }
-    // displayEditContent: function(index) {
-    //   this.selected = index;
-    //   this.editing = true;
-    // },
-    // displayEditedContent: function(content) {
-    //   this.contents[this.selected] = { ...content };
-    //   this.editing = false;
-    // },
   },
   mounted() {
-    // axios
-    //   .get(apiUrl)
-    //   .then(result => {
-    //     console.log('Get contents : Success!');
-    //     this.contents = [...result.data.data];
-    //   })
-    //   .catch(err => {
-    //     console.log('Get contents : Failed!');
-    //     console.log(err);
-    //   });
     console.log("Content-List Component mounted.");
   },
   created() {
     ContentsEventsBus.$on("displayContent", content => {
       this.displayContent(content);
+      this.editing = false;
+    });
+    ContentsEventsBus.$on("displayEditContent", content => {
+      this.displayContent(content);
+      this.editing = true;
+    });
+    ContentsEventsBus.$on("contentUpdated", content => {
+      this.displayContent(content);
+      this.editing = false;
     });
   }
 };
