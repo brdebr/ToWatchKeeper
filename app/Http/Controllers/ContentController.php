@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Content;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class ContentController extends Controller
 {
@@ -67,17 +68,25 @@ class ContentController extends Controller
     public function update(Request $request, $id)
     {
         $contentOld = (json_decode($request->getContent(), true));
-        $result = Content::find($id)->update((json_decode($request->getContent(), true)));
-        $contentNew = Content::find($id);
+        $contentOld["release"] = Carbon::createFromFormat('d/m/Y', $contentOld["release"]);
+        $result = Content::where('id',$id)->update($contentOld);
+        if($result){
+            $contentNew = Content::find($id);
+            $response = array(
+                'status' => 'OK',
+                'message' => 'Here is your updated content!',
+                'data' => array(
+                   'old' => $contentOld,
+                   'new' => $contentNew
+                )
+            );
+        }else{
+            $response = array(
+                'status' => 'Error',
+                'message' => 'Something went wrong :/'
+            );
+        }
         // TODO: Catch errors
-        $response = array(
-            'status' => 'OK',
-            'message' => 'Here is your updated content!',
-            'data' => array(
-               'old' => $contentOld,
-               'new' => $contentNew,
-            )
-        );
         return response()->json($response, 200, [], JSON_NUMERIC_CHECK);
     }
 

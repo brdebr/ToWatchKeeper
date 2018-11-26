@@ -5,7 +5,7 @@
                 {{ content.title }}
             </h5>
             <div class="ml-auto">
-                Released: {{formatedDate}}
+                Released: {{content.release}}
             </div>
         </div>
 
@@ -28,13 +28,6 @@
 import moment from 'moment';
 export default {
   props: ['content'],
-  computed: {
-    formatedDate: function() {
-      return moment(this.content.release)
-        .locale('es')
-        .format('L');
-    },
-  },
   mounted() {
     console.log('Content component mounted.');
   },

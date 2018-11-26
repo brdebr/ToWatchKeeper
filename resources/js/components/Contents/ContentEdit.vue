@@ -45,7 +45,9 @@ export default {
     return {
       placeholder: {},
       options: {
-        format: 'YYYY/MM/DD',
+        format: 'DD/MM/YYYY',
+        showTodayButton: true,
+        showClear: true,
       },
     };
   },
