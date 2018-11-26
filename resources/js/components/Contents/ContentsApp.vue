@@ -7,26 +7,22 @@
 
 <script>
 let apiUrl = 'http://localhost:8000/api/contents';
-import { ContentsEventsBus } from './ContentsEventsBus.js';
+import { ContentsEventsBus } from './ContentsEventsBus';
+import store from '../../store/store.js'
 
 export default {
-  data: function() {
-    return {
-      contents: [],
-    };
+  computed:{
+    contents(){
+      return this.$store.getters.contents;
+    }
   },
+  store,
   mounted() {
-    axios
-      .get(apiUrl)
-      .then(result => {
-        console.log('Get contents : Success!');
-        this.contents = [...result.data.data];
-        ContentsEventsBus.$emit('displayContent',this.contents[0]);
-      })
-      .catch(err => {
-        console.log('Get contents : Failed!');
-        console.log(err);
-      });
+    this.$store.dispatch('fetch_contents').then( response =>{
+      console.log('Action fetch_contents completed successfully');
+    }).catch(err => {
+      console.log('Something went wrong :/',err);
+    });
     console.log('Content-List Component mounted.');
   },
   created(){

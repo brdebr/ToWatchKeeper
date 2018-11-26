@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="col-3 ml-auto text-right">
-                Released: <date-picker v-model="content.release" :config="options"></date-picker>
+                <date-picker v-model="content.release" :config="options"></date-picker>
             </div>
         </div>
         <div class="row align-items-baseline">
