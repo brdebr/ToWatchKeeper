@@ -61,7 +61,7 @@ export default {
         .patch(apiUrl + this.content.id, this.content)
         .then(result => {
           console.log('Content updated : Success!', result.data);
-          ContentsEventsBus.$emit('contentUpdated', result.data.data.new);
+          ContentsEventsBus.contentUpdated(result.data.data.new);
         })
         .catch(err => {
           console.log('Content updated : Failed!', err);

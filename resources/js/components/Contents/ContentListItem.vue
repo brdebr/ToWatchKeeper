@@ -37,7 +37,7 @@ export default {
   methods: {
     sendDisplayContent: function() {
       console.log('Sending Event displayContent');
-      ContentsEventsBus.$emit('displayContent', this.content);
+      ContentsEventsBus.displayContent(this.content);
     },
     deleteContent: function() {
       console.log('Sending Event deleteContent');

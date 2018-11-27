@@ -53,7 +53,7 @@ export default {
     console.log("Content-List Component mounted.");
   },
   created() {
-    ContentsEventsBus.$on("displayContent", content => {
+    ContentsEventsBus.handleDisplayContent(content => {
       this.displayContent(content);
       this.editing = false;
     });
