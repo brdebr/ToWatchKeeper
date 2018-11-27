@@ -54,14 +54,22 @@ export default {
     console.log('Content-List Component mounted.');
   },
   created(){
-    ContentsEventsBus.$on('displayContent', content => {
+    let handlerAux = content =>{
       this.contents.find((el,index) => {
         if(el.id === content.id){
           this.selected = index;
           return;
         }
       })
+    };
+
+    ContentsEventsBus.handleDisplayContent( content => {
+      handlerAux(content)
     });
+    ContentsEventsBus.handleDisplayEditContent( content => {
+      handlerAux(content)
+    })
+
   }
 };
 </script>

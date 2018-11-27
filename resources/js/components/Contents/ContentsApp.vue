@@ -16,6 +16,12 @@ export default {
       return this.$store.getters.contents;
     }
   },
+  watch:{
+    contents: function(contents) {
+      console.log('Hey! Something changed at ContentsApp.contents()');
+      ContentsEventsBus.displayContent(contents[0]);
+    }
+  },
   store,
   mounted() {
     this.$store.dispatch('fetch_contents').then( response =>{
@@ -26,7 +32,7 @@ export default {
     console.log('Content-List Component mounted.');
   },
   created(){
-    ContentsEventsBus.$on('contentDestroyed', id => {
+    ContentsEventsBus.handleContentDestroyed(id => {
       this.contents.find((el,index)=>{
         if(el.id === id){
           this.contents.splice(index, 1);
@@ -34,7 +40,7 @@ export default {
         }
       })
     });
-    ContentsEventsBus.$on('contentUpdated', content => {
+    ContentsEventsBus.handleContentUpdated(content => {
       this.contents.find((el,index) => {
         if(el.id === content.id){
           this.selected = index;

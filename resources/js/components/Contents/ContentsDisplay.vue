@@ -57,11 +57,11 @@ export default {
       this.displayContent(content);
       this.editing = false;
     });
-    ContentsEventsBus.$on("displayEditContent", content => {
+    ContentsEventsBus.handleDisplayEditContent(content => {
       this.displayContent(content);
       this.editing = true;
     });
-    ContentsEventsBus.$on("contentUpdated", content => {
+    ContentsEventsBus.handleContentUpdated(content => {
       this.displayContent(content);
       this.editing = false;
     });

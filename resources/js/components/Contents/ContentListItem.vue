@@ -11,13 +11,13 @@
                     <i class="fa fa-fw fa-eye"></i>
                 </a>
             </span>
-            <span @click="sendDisplayEditContent" class="float-right mr-3">
+            <span @click.prevent="sendDisplayEditContent" class="float-right mr-3">
                 <a href="#" class="btn-outline">
                     <!-- TODO: inline style -->
                     <i class="fa fa-fw fa-edit" style="color:#ce6100"></i>
                 </a>
             </span>
-            <span @click="deleteContent" class="float-right mr-3">
+            <span @click.prevent="deleteContent" class="float-right mr-3">
                 <a href="#" class="btn-outline">
                     <i class="fa fa-fw fa-trash text-danger"></i>
                 </a>
@@ -48,7 +48,7 @@ export default {
         .then(result => {
           console.log('Content deleted : Success!');
           console.log(result.data);
-          ContentsEventsBus.$emit('contentDestroyed', result.data.data.id);
+          ContentsEventsBus.contentDestroyed(result.data.data.id);
         })
         .catch(err => {
           console.log('Content deleted : Failed!');
@@ -57,7 +57,7 @@ export default {
     },
     sendDisplayEditContent: function() {
       console.log('Sending Event displayEditContent');
-      ContentsEventsBus.$emit('displayEditContent', this.content);
+      ContentsEventsBus.displayEditContent(this.content);
     },
   },
   mounted() {
