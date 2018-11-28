@@ -1,26 +1,26 @@
 <template>
-    <div class="row justify-content-center">
-          <div class="col-md-11">
-              <div class="card card-default border-secondary bg-dark mb-3">
-                  <div class="card-header d-flex align-items-baseline text-light">
-                      <span @click="toggleEditing">
-                          I'm a Content DISPLAYER !
-                      </span>
-                      <small class="ml-auto">
-                          Record ID: #{{ content.id }}
-                      </small>
-                  </div>
-                  <div class="card-body bg-light overflow-h-border-bottom">
-                      <template v-if="!editing">
-                          <content-detail :content="content"/>
-                      </template>
-                      <template v-else>
-                          <content-edit :content="content"/>
-                      </template>
-                  </div>
-              </div>
+  <div class="row justify-content-center">
+    <div class="col-md-11">
+      <div class="card card-default border-secondary bg-dark mb-3">
+        <div class="card-header d-flex align-items-baseline text-light">
+          <span @click="toggleEditing">
+              I'm a Content DISPLAYER !
+          </span>
+          <small class="ml-auto">
+              Record ID: #{{ content.id }}
+          </small>
         </div>
+        <div class="card-body bg-light overflow-h-border-bottom">
+          <template v-if="!editing">
+              <content-detail :content="content"/>
+          </template>
+          <template v-else>
+              <content-edit :content="content"/>
+          </template>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>

@@ -28,7 +28,7 @@
                 <div class="col-2 font-weight-bold pl-0">
                   Type:
                 </div>
-                <div class="col-7">
+                <div class="col-6 pr-0">
                     <input 
                      type="text" 
                      class="form-control"
@@ -36,7 +36,7 @@
                      v-model="content.type"
                     />
                 </div>
-                <div class="col-3">
+                <div class="col-4">
                   <date-picker 
                    v-model="content.release"
                    class="text-center"
@@ -101,5 +101,10 @@ export default {
   mounted() {
     console.log('ContentCreate component mounted.');
   },
+  created(){
+    ContentsEventsBus.handleClearCreate(() => {
+      this.content = {}
+    });
+  }
 };
 </script>

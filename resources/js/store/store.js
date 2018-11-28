@@ -55,6 +55,7 @@ const store = new Vuex.Store({
 			.then(result =>{
 				console.log('Content creation Success!',result.data.data);
 				commit('ADD_CONTENT',result.data.data)
+				ContentsEventsBus.clearCreate(result.data.data);
 				ContentsEventsBus.displayContent(result.data.data);
 			}).catch(err => {
 				console.log('Content creation Failed!',err);

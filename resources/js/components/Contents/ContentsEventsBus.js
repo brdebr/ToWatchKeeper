@@ -17,6 +17,10 @@ export const ContentsEventsBus = new Vue({
         contentDestroyed: function (id) {
             this.$emit('contentDestroyed', id);
         },
+        clearCreate: function () {
+            console.log('Emitting - clearCreate()');
+            this.$emit('clearCreate');
+        },
         // HANDLERS
         handleDisplayContent: function (callback) {
             this.$on("displayContent", content => {
@@ -37,6 +41,11 @@ export const ContentsEventsBus = new Vue({
             this.$on("contentDestroyed", id => {
                 callback(id);
               });
+        },
+        handleClearCreate: function (callback) {
+            this.$on('clearCreate', () => {
+                callback();
+            });
         },
     }
 });

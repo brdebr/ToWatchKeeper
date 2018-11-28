@@ -40,7 +40,7 @@ export default {
         if(el.id === content.id){
           this.selected = index;
           this.contents[index] = content;
-          return;
+          return el.id;
         }
       })
     });
