@@ -1,4 +1,5 @@
 import Vuex from 'vuex'
+import { ContentsEventsBus } from '../components/Contents/ContentsEventsBus';
 
 let apiUrl = 'http://localhost:8000/api/contents';
 
@@ -41,6 +42,7 @@ const store = new Vuex.Store({
 					let auxContents = [...result.data.data];
 					commit('END_LOADING')
 					commit('SET_CONTENTS',auxContents)
+					ContentsEventsBus.displayContent(auxContents[0]);
 				})
 				.catch(err => {
 					console.log('Get contents : Failed!');
@@ -53,6 +55,7 @@ const store = new Vuex.Store({
 			.then(result =>{
 				console.log('Content creation Success!',result.data.data);
 				commit('ADD_CONTENT',result.data.data)
+				ContentsEventsBus.displayContent(result.data.data);
 			}).catch(err => {
 				console.log('Content creation Failed!',err);
 			});

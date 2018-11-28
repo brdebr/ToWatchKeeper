@@ -60,7 +60,6 @@ export default {
       axios
         .patch(apiUrl + this.content.id, this.content)
         .then(result => {
-          console.log('Content updated : Success!', result.data);
           ContentsEventsBus.contentUpdated(result.data.data.new);
         })
         .catch(err => {

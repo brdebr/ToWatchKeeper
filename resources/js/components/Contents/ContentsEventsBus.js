@@ -3,12 +3,15 @@ export const ContentsEventsBus = new Vue({
     methods:{
         // EMITTERS
         displayContent: function (content) {
+            console.log('Emitting - displayContent()',content);
             this.$emit('displayContent', content);
         },
         displayEditContent: function (content) {
+            console.log('Emitting - displayEditContent()',content);
             this.$emit('displayEditContent', content);
         },
         contentUpdated: function (content) {
+            console.log('Emitting - contentUpdated()',content);
             this.$emit('contentUpdated', content);
         },
         contentDestroyed: function (id) {

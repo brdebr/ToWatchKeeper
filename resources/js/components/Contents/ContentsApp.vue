@@ -17,12 +17,6 @@ export default {
       return this.$store.getters.contents;
     }
   },
-  watch:{
-    contents: function(contents) {
-      console.log('Hey! Something changed at ContentsApp.contents()');
-      ContentsEventsBus.displayContent(contents[0]);
-    }
-  },
   store,
   mounted() {
     this.$store.dispatch('fetch_contents').then( response =>{

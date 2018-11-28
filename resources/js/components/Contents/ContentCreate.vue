@@ -4,7 +4,7 @@
       <div class="card card-default border-secondary bg-dark mb-3">
         <div class="card-header d-flex align-items-baseline text-light">
           <span >I'm a Content Creator !</span>
-          <button @click="createContent" class="ml-auto btn btn-outline-success">
+          <button @click="createContent" class="ml-auto btn btn-success">
             <i class="fa fa-plus-circle"></i>
           </button>
         </div>

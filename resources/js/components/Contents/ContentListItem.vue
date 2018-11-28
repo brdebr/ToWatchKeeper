@@ -6,22 +6,22 @@
             <span>
                 {{ content.title }}
             </span>
-            <span @click.prevent="sendDisplayContent" class="float-right">
-                <a href="#" class="btn-outline">
+            <div @click.prevent="sendDisplayContent" class="float-right">
+                <a href="javascript:void(0)" class="btn-outline">
                     <i class="fa fa-fw fa-eye"></i>
                 </a>
-            </span>
-            <span @click.prevent="sendDisplayEditContent" class="float-right mr-3">
-                <a href="#" class="btn-outline">
+            </div>
+            <div @click.prevent="sendDisplayEditContent" class="float-right mr-3">
+                <a href="javascript:void(0)" class="btn-outline">
                     <!-- TODO: inline style -->
                     <i class="fa fa-fw fa-edit" style="color:#ce6100"></i>
                 </a>
-            </span>
-            <span @click.prevent="deleteContent" class="float-right mr-3">
-                <a href="#" class="btn-outline">
+            </div>
+            <div @click.prevent="deleteContent" class="float-right mr-3">
+                <a href="javascript:void(0)" class="btn-outline">
                     <i class="fa fa-fw fa-trash text-danger"></i>
                 </a>
-            </span>
+            </div>
         </div>
 
     </li>
@@ -36,7 +36,6 @@ export default {
   props: ['content', 'index', 'active'],
   methods: {
     sendDisplayContent: function() {
-      console.log('Sending Event displayContent');
       ContentsEventsBus.displayContent(this.content);
     },
     deleteContent: function() {
@@ -56,7 +55,6 @@ export default {
         });
     },
     sendDisplayEditContent: function() {
-      console.log('Sending Event displayEditContent');
       ContentsEventsBus.displayEditContent(this.content);
     },
   },
