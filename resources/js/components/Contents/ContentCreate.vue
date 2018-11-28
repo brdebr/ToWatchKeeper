@@ -95,12 +95,7 @@ export default {
   methods: {
     createContent: function() {
       console.log('Creating content ...');
-        axios.post(apiUrl,this.content)
-        .then(result =>{
-            console.log('Content Created',);
-        }).catch(err => {
-            console.log('Content Created',);
-        });
+      this.$store.dispatch('insert_content',this.content);
     },
   },
   mounted() {

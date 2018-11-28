@@ -7,7 +7,7 @@
                           I'm a Content list !
                       </span>
                       <small class="ml-auto">
-                          Listing : {{ 2+2 }} contents
+                          Listing : {{ contents.length }} contents
                       </small>
                   </div>
                   <ul class="list-group list-group-flush">
@@ -54,20 +54,22 @@ export default {
     console.log('Content-List Component mounted.');
   },
   created(){
-    let handlerAux = content =>{
+
+    ContentsEventsBus.handleDisplayContent( content => {
       this.contents.find((el,index) => {
         if(el.id === content.id){
           this.selected = index;
           return;
         }
       })
-    };
-
-    ContentsEventsBus.handleDisplayContent( content => {
-      handlerAux(content)
     });
     ContentsEventsBus.handleDisplayEditContent( content => {
-      handlerAux(content)
+      this.contents.find((el,index) => {
+        if(el.id === content.id){
+          this.selected = index;
+          return;
+        }
+      })
     })
 
   }

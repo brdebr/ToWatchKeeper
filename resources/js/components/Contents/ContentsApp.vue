@@ -33,11 +33,11 @@ export default {
     console.log('Content-List Component mounted.');
   },
   created(){
-    ContentsEventsBus.handleContentDestroyed(id => {
+    ContentsEventsBus.handleContentDestroyed( id => {
       this.contents.find((el,index)=>{
         if(el.id === id){
           this.contents.splice(index, 1);
-          return;
+          return el.id;
         }
       })
     });

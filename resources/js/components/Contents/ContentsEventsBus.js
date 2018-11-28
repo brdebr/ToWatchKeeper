@@ -31,8 +31,8 @@ export const ContentsEventsBus = new Vue({
               });
         },
         handleContentDestroyed: function (callback) {
-            this.$on("contentDestroyed", content => {
-                callback(content);
+            this.$on("contentDestroyed", id => {
+                callback(id);
               });
         },
     }

@@ -25,11 +25,14 @@ const store = new Vuex.Store({
 		},
 		SELECT_FIRST(state){
 			state.selected = 0
+		},
+		ADD_CONTENT(state, payload){
+			state.contents.push(payload)
 		}
 	},
 	actions: {
 		fetch_contents({ commit }) {
-			console.log("Commit fetch_contents");
+			console.log('Executing "fetch_content"');
 			commit('START_LOADING');
 			axios
 				.get(apiUrl)
@@ -43,7 +46,19 @@ const store = new Vuex.Store({
 					console.log('Get contents : Failed!');
 					console.log(err);
 				});
+		},
+		insert_content({ commit }, payload){
+			console.log('Executing "insert_content"');
+			axios.post(apiUrl,payload)
+			.then(result =>{
+				console.log('Content creation Success!',result.data.data);
+				commit('ADD_CONTENT',result.data.data)
+			}).catch(err => {
+				console.log('Content creation Failed!',err);
+			});
+
 		}
+
 	}
 });
 
