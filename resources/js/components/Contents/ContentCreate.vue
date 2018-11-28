@@ -4,17 +4,17 @@
       <div class="card card-default border-secondary bg-dark mb-3">
         <div class="card-header d-flex align-items-baseline text-light">
           <span >I'm a Content Creator !</span>
-          <button class="ml-auto btn btn-outline-success">
+          <button @click="createContent" class="ml-auto btn btn-outline-success">
             <i class="fa fa-plus-circle"></i>
           </button>
         </div>
-        <div class="card-body bg-light">
+        <div class="card-body bg-light overflow-h-border-bottom">
           <div class="container-fluid">
             <div class="row align-items-baseline mb-2">
               <div class="col-2 font-weight-bold pl-0">
                   Title:
               </div>
-              <div class="col-7">
+              <div class="col-10">
                 <input
                   type="text"
                   class="form-control"
@@ -22,16 +22,40 @@
                   placeholder="Content Title"
                 >
               </div>
-              <div class="col-3">
-                <date-picker v-model="content.release" class="text-center" placeholder="Date" :config="options"></date-picker>
-              </div>
+              
             </div>
             <div class="row align-items-baseline mb-2">
                 <div class="col-2 font-weight-bold pl-0">
                   Type:
                 </div>
+                <div class="col-7">
+                    <input 
+                     type="text" 
+                     class="form-control"
+                     placeholder="Content type"
+                     v-model="content.type"
+                    />
+                </div>
+                <div class="col-3">
+                  <date-picker 
+                   v-model="content.release"
+                   class="text-center"
+                   placeholder="Date"
+                   :config="options"
+                  />
+                </div>
+            </div>
+            <div class="row align-items-baseline mb-2">
+                <div class="col-2 font-weight-bold pl-0">
+                  Info URL:
+                </div>
                 <div class="col-10">
-                    <input type="text" class="form-control"/>
+                    <input 
+                     type="text" 
+                     class="form-control"
+                     placeholder="Info URL"
+                     v-model="content.infourl"
+                    />
                 </div>
             </div>
             <div class="row align-items-baseline">
@@ -39,7 +63,11 @@
                     Synopsis:
                 </div>
                 <div class="col-10">
-                    <textarea class="form-control" rows="3"/>
+                    <textarea 
+                     v-model="content.synopsis"
+                     placeholder="Synopsis"
+                     class="form-control"
+                     rows="3"/>
                 </div>
             </div>
           </div>
@@ -66,7 +94,13 @@ export default {
   },
   methods: {
     createContent: function() {
-
+      console.log('Creating content ...');
+        axios.post(apiUrl,this.content)
+        .then(result =>{
+            console.log('Content Created',);
+        }).catch(err => {
+            console.log('Content Created',);
+        });
     },
   },
   mounted() {

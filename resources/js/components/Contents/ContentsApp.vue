@@ -54,7 +54,8 @@ export default {
 };
 </script>
 <style lang="scss">
-  .overflow-hidden{
-    overflow: hidden;
+  .overflow-h-border-bottom{
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
   }
 </style>
