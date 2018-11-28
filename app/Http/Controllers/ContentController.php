@@ -68,7 +68,6 @@ class ContentController extends Controller
     public function update(Request $request, $id)
     {
         $contentOld = (json_decode($request->getContent(), true));
-        $contentOld["release"] = Carbon::createFromFormat('d/m/Y', $contentOld["release"]);
         $result = Content::where('id',$id)->update($contentOld);
         if($result){
             $contentNew = Content::find($id);

@@ -25,8 +25,8 @@ class Content extends Model
         return Carbon::parse($value)->format('d/m/Y');
     }
 
-    /* public function setReleaseAttribute($value)
+    public function setReleaseAttribute($value)
     {
-        $this->attributes['release'] = Carbon::createFromFormat('d/m/Y', $value)->toDateString();
-    } */
+        $this->attributes['release'] = Carbon::createFromFormat('d/m/Y', $value);
+    }
 }
