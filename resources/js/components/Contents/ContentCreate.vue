@@ -1,7 +1,7 @@
 <template>
   <div class="row justify-content-center">
     <div class="col-md-11">
-      <div class="card card-default border-secondary bg-dark mb-3">
+      <div class="card card-default border-secondary bg-dark mb-3 overflow-hidden">
         <div class="card-header d-flex align-items-baseline text-light">
           <span >I'm a Content Creator !</span>
           <small class="ml-auto">Record ID: #{{ content.id }}</small>
@@ -14,23 +14,13 @@
                   type="text"
                   class="form-control"
                   v-model.trim="content.title"
-                  :placeholder="placeholder.title"
+                  placeholder="Content Title"
                 >
                 <div class="input-group-append">
-                  <button
-                    @click.prevent="updateContent"
-                    class="btn btn-outline-success"
-                    type="button"
-                  >
-                    <span class="float-right">
-                      <!-- TODO: inline style -->
-                      <i class="fa fa-fw fa-edit" style="color:#ce6100"></i>
-                    </span>
-                  </button>
                 </div>
               </div>
               <div class="col-3 ml-auto text-right">
-                <date-picker v-model="content.release" :config="options"></date-picker>
+                <date-picker v-model="content.release" :placeholder="'Date'" :config="options"></date-picker>
               </div>
             </div>
             <div class="row align-items-baseline">
@@ -62,7 +52,6 @@ import { ContentsEventsBus } from './ContentsEventsBus.js';
 export default {
   data: function() {
     return {
-      placeholder: {},
       content: {},
       options: {
         format: 'DD/MM/YYYY',

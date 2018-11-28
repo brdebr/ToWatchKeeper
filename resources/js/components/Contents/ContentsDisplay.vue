@@ -1,7 +1,7 @@
 <template>
     <div class="row justify-content-center">
           <div class="col-md-11">
-              <div class="card card-default border-secondary bg-dark mb-3">
+              <div class="card card-default border-secondary bg-dark mb-3 overflow-hidden">
                   <div class="card-header d-flex align-items-baseline text-light">
                       <span @click="toggleEditing">
                           I'm a Content DISPLAYER !
@@ -68,3 +68,4 @@ export default {
   }
 };
 </script>
+
