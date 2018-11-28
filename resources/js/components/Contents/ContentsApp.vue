@@ -2,6 +2,7 @@
     <div class="container">
         <contents-display/>
         <contents-list :contents="contents"/>
+        <content-create/>
     </div>
 </template>
 
