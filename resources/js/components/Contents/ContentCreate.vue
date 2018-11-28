@@ -1,42 +1,46 @@
 <template>
   <div class="row justify-content-center">
     <div class="col-md-11">
-      <div class="card card-default border-secondary bg-dark mb-3 overflow-hidden">
+      <div class="card card-default border-secondary bg-dark mb-3">
         <div class="card-header d-flex align-items-baseline text-light">
           <span >I'm a Content Creator !</span>
-          <small class="ml-auto">Record ID: #{{ content.id }}</small>
+          <button class="ml-auto btn btn-outline-success">
+            <i class="fa fa-plus-circle"></i>
+          </button>
         </div>
         <div class="card-body bg-light">
           <div class="container-fluid">
-            <div class="align-items-baseline row">
-              <div class="col-4 input-group mb-3 pl-0">
+            <div class="row align-items-baseline mb-2">
+              <div class="col-2 font-weight-bold pl-0">
+                  Title:
+              </div>
+              <div class="col-7">
                 <input
                   type="text"
                   class="form-control"
                   v-model.trim="content.title"
                   placeholder="Content Title"
                 >
-                <div class="input-group-append">
-                </div>
               </div>
-              <div class="col-3 ml-auto text-right">
-                <date-picker v-model="content.release" :placeholder="'Date'" :config="options"></date-picker>
+              <div class="col-3">
+                <date-picker v-model="content.release" class="text-center" placeholder="Date" :config="options"></date-picker>
               </div>
             </div>
-            <div class="row align-items-baseline">
-              <h6 class="card-subtitle mb-2 text-muted">
-                <span>
+            <div class="row align-items-baseline mb-2">
+                <div class="col-2 font-weight-bold pl-0">
                   Type:
-                  <span class="text-capitalize badge badge-pill badge-primary">{{content.type}}</span>
-                </span>
-              </h6>
+                </div>
+                <div class="col-10">
+                    <input type="text" class="form-control"/>
+                </div>
             </div>
             <div class="row align-items-baseline">
-              <div class="d-flex">
-                <div class="mr-3 font-weight-bold">Synopsis:</div>
-                <div class>{{content.synopsis}}</div>
-              </div>
-              <a :href="content.infourl" class="float-right card-link badge badge-info">More info</a>
+                <div class="col-2 font-weight-bold pl-0">
+                    Synopsis:
+                </div>
+                <div class="col-10">
+                    <textarea class="form-control" rows="3"/>
+                </div>
             </div>
           </div>
         </div>
