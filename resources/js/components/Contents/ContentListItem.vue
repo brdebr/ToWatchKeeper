@@ -39,20 +39,7 @@ export default {
       ContentsEventsBus.displayContent(this.content);
     },
     deleteContent: function() {
-      console.log('Sending Event deleteContent');
-      console.log('Content', this.content);
-
-      axios
-        .delete(apiUrl + this.content.id)
-        .then(result => {
-          console.log('Content deleted : Success!');
-          console.log(result.data);
-          ContentsEventsBus.contentDestroyed(result.data.data.id);
-        })
-        .catch(err => {
-          console.log('Content deleted : Failed!');
-          console.log(err);
-        });
+      this.$store.dispatch('delete_content',this.content.id)
     },
     sendDisplayEditContent: function() {
       ContentsEventsBus.displayEditContent(this.content);

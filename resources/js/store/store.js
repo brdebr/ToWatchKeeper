@@ -24,16 +24,21 @@ const store = new Vuex.Store({
 		END_LOADING(state){
 			state.loading = false
 		},
-		SELECT_FIRST(state){
-			state.selected = 0
-		},
 		ADD_CONTENT(state, payload){
 			state.contents.push(payload)
+		},
+		DELETE_CONTENT(state, payload){
+			state.contents.find((el, index )=> {
+				if(payload === el.id){
+					state.contents.splice(index,1)
+					return el.id;
+				}
+			})
 		}
 	},
 	actions: {
 		fetch_contents({ commit }) {
-			console.log('Executing "fetch_content"');
+			console.log('Executing "fetch_content" from VUEX!');
 			commit('START_LOADING');
 			axios
 				.get(apiUrl)
@@ -50,7 +55,7 @@ const store = new Vuex.Store({
 				});
 		},
 		insert_content({ commit }, payload){
-			console.log('Executing "insert_content"');
+			console.log('Executing "insert_content" from VUEX!');
 			axios.post(apiUrl,payload)
 			.then(result =>{
 				console.log('Content creation Success!',result.data.data);
@@ -60,7 +65,23 @@ const store = new Vuex.Store({
 			}).catch(err => {
 				console.log('Content creation Failed!',err);
 			});
-
+			
+		},
+		delete_content({ commit },payload){
+			console.log('Executing "delete_content" from VUEX!');
+			console.log('apiUrl + payload',apiUrl + payload);
+			axios
+			.delete(apiUrl +"/"+ payload)
+			.then(result => {
+			  console.log('Content deleted : Success!');
+			  console.log(result.data);
+			  commit('DELETE_CONTENT',payload)
+			  ContentsEventsBus.displayContent(this.state.contents[0]);
+			})
+			.catch(err => {
+			  console.log('Content deleted : Failed!');
+			  console.log(err);
+			});
 		}
 
 	}

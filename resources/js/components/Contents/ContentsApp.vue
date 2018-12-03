@@ -27,14 +27,6 @@ export default {
     console.log('Content-List Component mounted.');
   },
   created(){
-    ContentsEventsBus.handleContentDestroyed( id => {
-      this.contents.find((el,index)=>{
-        if(el.id === id){
-          this.contents.splice(index, 1);
-          return el.id;
-        }
-      })
-    });
     ContentsEventsBus.handleContentUpdated(content => {
       this.contents.find((el,index) => {
         if(el.id === content.id){
