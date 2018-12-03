@@ -36,8 +36,8 @@
 </template>
 
 <script>
-let apiUrl = 'http://localhost:8000/api/contents/';
-import { ContentsEventsBus } from './ContentsEventsBus.js';
+let apiUrl = 'http://localhost:8000/api/contents/'
+import { ContentsEventsBus } from './ContentsEventsBus.js'
 
 export default {
   props: ['content'],
@@ -49,33 +49,33 @@ export default {
         showTodayButton: true,
         showClear: true,
       },
-    };
+    }
   },
   methods: {
     updateContent: function() {
-      console.log('Fetching updateContent from server...', [
-        apiUrl + this.content.id,
-        this.content,
-      ]);
+      console.log('Fetching updateContent from server...', {
+          url:apiUrl + this.content.id,
+          content:this.content
+      })
       axios
         .patch(apiUrl + this.content.id, this.content)
         .then(result => {
-          ContentsEventsBus.contentUpdated(result.data.data.new);
+          ContentsEventsBus.contentUpdated(result.data.data.new)
         })
-        .catch(err => {
-          console.log('Content updated : Failed!', err);
-          alert("Didn't work");
-        });
+        .catch(error => {
+          console.log('Content updated : Failed!', {error})
+          alert("Didn't work")
+        })
     },
   },
   mounted() {
     if (this.placeholder !== {} && this.placeholder !== this.content) {
-      this.placeholder = { ...this.content };
+      this.placeholder = { ...this.content }
     }
-    console.log('Content component mounted.');
+    console.log('Content component mounted.')
   },
   beforeDestroy() {
-    this.placeholder = {};
+    this.placeholder = {}
   },
-};
+}
 </script>

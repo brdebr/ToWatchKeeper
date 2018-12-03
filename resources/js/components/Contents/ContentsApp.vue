@@ -7,37 +7,37 @@
 </template>
 
 <script>
-let apiUrl = 'http://localhost:8000/api/contents';
-import { ContentsEventsBus } from './ContentsEventsBus';
+let apiUrl = 'http://localhost:8000/api/contents'
+import { ContentsEventsBus } from './ContentsEventsBus'
 import store from '../../store/store.js'
 
 export default {
   computed:{
     contents(){
-      return this.$store.getters.contents;
+      return this.$store.getters.contents
     }
   },
   store,
   mounted() {
     this.$store.dispatch('fetch_contents').then( response =>{
-      console.log('Action fetch_contents completed successfully');
-    }).catch(err => {
-      console.log('Something went wrong :/',err);
-    });
-    console.log('Content-List Component mounted.');
+      console.log('Action fetch_contents completed successfully')
+    }).catch(error => {
+      console.log('Something went wrong :/',{error})
+    })
+    console.log('Content-List Component mounted.')
   },
   created(){
     ContentsEventsBus.handleContentUpdated(content => {
       this.contents.find((el,index) => {
         if(el.id === content.id){
-          this.selected = index;
-          this.contents[index] = content;
-          return el.id;
+          this.selected = index
+          this.contents[index] = content
+          return el.id
         }
       })
-    });
+    })
   }
-};
+}
 </script>
 <style lang="scss">
   .overflow-h-border-bottom{

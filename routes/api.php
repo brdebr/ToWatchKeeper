@@ -18,3 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('contents', 'ContentController');
+
+Route::group(['middleware' => 'auth'], function () {
+    /* INSERT ROUTES HERE TO LOCK THEM BEHIND AUTH */
+});

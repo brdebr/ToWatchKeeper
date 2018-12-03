@@ -3,8 +3,8 @@
     <div class="col-md-11">
       <div class="card card-default border-secondary bg-dark mb-3">
         <div class="card-header d-flex align-items-baseline text-light">
-          <span @click="toggleEditing">
-              I'm a Content DISPLAYER !
+          <span>
+              I'm a Content Displayer !
           </span>
           <small class="ml-auto">
               Record ID: #{{ content.id }}
@@ -24,10 +24,9 @@
 </template>
 
 <script>
-import { ContentsEventsBus } from "./ContentsEventsBus.js";
+import { ContentsEventsBus } from "./ContentsEventsBus.js"
 
-let apiUrl = "http://localhost:8000/api/contents";
-// let content = ;
+let apiUrl = "http://localhost:8000/api/contents"
 export default {
   data: function() {
     return {
@@ -39,33 +38,34 @@ export default {
         infourl: "about:blank"
       },
       editing: false
-    };
+    }
   },
   methods: {
     displayContent: function(content) {
-      this.content = content;
+      this.content = content
     },
     toggleEditing: function() {
-      this.editing = !this.editing;
+      this.editing = !this.editing
     }
   },
   mounted() {
-    console.log("Content-List Component mounted.");
+    console.log("Content-List Component mounted.")
   },
   created() {
     ContentsEventsBus.handleDisplayContent(content => {
-      this.displayContent(content);
-      this.editing = false;
-    });
+      this.displayContent(content)
+      this.editing = false
+    })
     ContentsEventsBus.handleDisplayEditContent(content => {
-      this.displayContent(content);
-      this.editing = true;
-    });
+      this.displayContent(content)
+      this.editing = true
+    })
     ContentsEventsBus.handleContentUpdated(content => {
-      this.displayContent(content);
-      this.editing = false;
-    });
+      /* TODO: FIX THIS DOUBLE CONTENT */
+      this.displayContent(content.content)
+      this.editing = false
+    })
   }
-};
+}
 </script>
 

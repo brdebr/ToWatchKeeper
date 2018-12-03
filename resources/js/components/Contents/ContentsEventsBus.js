@@ -3,49 +3,49 @@ export const ContentsEventsBus = new Vue({
     methods:{
         // EMITTERS
         displayContent: function (content) {
-            console.log('Emitting - displayContent()',content);
-            this.$emit('displayContent', content);
+            console.log('Emitting - displayContent()',{content})
+            this.$emit('displayContent', content)
         },
         displayEditContent: function (content) {
-            console.log('Emitting - displayEditContent()',content);
-            this.$emit('displayEditContent', content);
+            console.log('Emitting - displayEditContent()',{content})
+            this.$emit('displayEditContent', content)
         },
         contentUpdated: function (content) {
-            console.log('Emitting - contentUpdated()',content);
-            this.$emit('contentUpdated', content);
+            console.log('Emitting - contentUpdated()',{content})
+            this.$emit('contentUpdated', {content})
         },
         contentDestroyed: function (id) {
-            this.$emit('contentDestroyed', id);
+            this.$emit('contentDestroyed', id)
         },
         clearCreate: function () {
-            console.log('Emitting - clearCreate()');
-            this.$emit('clearCreate');
+            console.log('Emitting - clearCreate()')
+            this.$emit('clearCreate')
         },
         // HANDLERS
         handleDisplayContent: function (callback) {
             this.$on("displayContent", content => {
-                callback(content);
-              });
+                callback(content)
+              })
         },
         handleDisplayEditContent: function (callback) {
             this.$on("displayEditContent", content => {
-                callback(content);
-              });
+                callback(content)
+              })
         },
         handleContentUpdated: function (callback) {
             this.$on("contentUpdated", content => {
-                callback(content);
-              });
+                callback(content)
+              })
         },
         handleContentDestroyed: function (callback) {
             this.$on("contentDestroyed", id => {
-                callback(id);
-              });
+                callback(id)
+              })
         },
         handleClearCreate: function (callback) {
             this.$on('clearCreate', () => {
-                callback();
-            });
+                callback()
+            })
         },
     }
-});
+})

@@ -2,7 +2,7 @@
     <div>
         <div class="text-capitalize d-flex align-items-baseline">
             <h5>
-                {{ content.title }}
+                {{content.title}}
             </h5>
             <div class="ml-auto">
                 Released: {{content.release}}
@@ -25,11 +25,11 @@
 </template>
 
 <script>
-import moment from 'moment';
+import moment from 'moment'
 export default {
   props: ['content'],
   mounted() {
-    console.log('Content component mounted.');
+    console.log('Content component mounted.')
   },
-};
+}
 </script>

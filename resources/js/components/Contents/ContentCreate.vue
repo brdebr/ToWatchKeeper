@@ -78,8 +78,8 @@
 </template>
 
 <script>
-let apiUrl = 'http://localhost:8000/api/contents/';
-import { ContentsEventsBus } from './ContentsEventsBus.js';
+let apiUrl = 'http://localhost:8000/api/contents/'
+import { ContentsEventsBus } from './ContentsEventsBus.js'
 
 export default {
   data: function() {
@@ -90,21 +90,23 @@ export default {
         showTodayButton: true,
         showClear: true,
       },
-    };
+    }
   },
   methods: {
     createContent: function() {
-      console.log('Creating content ...');
-      this.$store.dispatch('insert_content',this.content);
+      console.log('Creating content ...',{
+        content:this.content
+      })
+      this.$store.dispatch('insert_content',this.content)
     },
   },
   mounted() {
-    console.log('ContentCreate component mounted.');
+    console.log('ContentCreate component mounted.')
   },
   created(){
     ContentsEventsBus.handleClearCreate(() => {
       this.content = {}
-    });
+    })
   }
-};
+}
 </script>
