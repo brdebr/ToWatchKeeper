@@ -19,6 +19,9 @@
             </div>
         </div>
         <contents-app></contents-app>
+        <clients/>
+        <authorized-clients/>
+        <personal-access-tokens/>
     </div>
 </div>
 @endsection
